@@ -1,6 +1,21 @@
 import requests
+import sys  
+import os
 
-with open("urls.txt", "r") as f:
+if len(sys.argv)>2:
+    print("Eroare. Sintaxa corecta python3 ex4.py <fisier_urls>")
+    sys.exit(1)
+
+file_name = sys.argv[1]
+
+if not os.path.isfile(file_name):
+    print("Eroare. Fisierul nu exista")
+    sys.exit(1)
+
+print(file_name)    
+
+
+with open(file_name, "r") as f:
     urls = [linie.strip() for linie in f if linie.strip()]
 
 with open("success.txt", "w") as success_file, open("errors.txt", "w") as error_file:
